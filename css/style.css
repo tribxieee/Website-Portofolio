@@ -89,6 +89,7 @@
 /* home */
 .home {
     background-image: linear-gradient(to bottom, #95122c, #100c08);
+    margin-top: -50px;
 }
 .home .title {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;

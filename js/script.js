@@ -64,33 +64,6 @@ document.querySelectorAll('section').forEach(section => fadeInSection(section));
 animateSkills();
 
 
-// Tunggu sampai halaman siap
-document.addEventListener('DOMContentLoaded', () => {
-
-    const homeTitle = document.querySelector('.home .title'); // ambil judul
-    // Buat input nama
-    const nameInput = document.createElement('input');
-    nameInput.type = 'text';
-    nameInput.placeholder = 'Enter your name';
-    nameInput.style.margin = '10px 0';
-    nameInput.style.padding = '10px';
-    nameInput.style.borderRadius = '5px';
-
-    // masukkan input di bawah judul
-    homeTitle.parentElement.insertBefore(nameInput, homeTitle.nextSibling);
-
-    // setiap kali ketik, ubah sapaan
-    nameInput.addEventListener('input', () => {
-        const name = nameInput.value.trim();
-        if (name) {
-            homeTitle.innerHTML = `Hi ${name}!<br>I'm Nadya Denaneer`;
-        } else {
-            homeTitle.innerHTML = `Hello!<br>I'm Nadya Denaneer`;
-        }
-    });
-
-});
-
 document.addEventListener('DOMContentLoaded', () => {
 
     const contactForm = document.querySelector('.contact-form');
