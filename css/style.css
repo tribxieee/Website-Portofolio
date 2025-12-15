@@ -331,28 +331,69 @@ section {
   }
 }
 
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.skill-card {
+  background: #fff;
+  padding: 18px 20px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-4px);
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 .skill-name {
   font-weight: 600;
+  font-size: 0.95rem;
 }
 
 .skill-percent {
-  float: right;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
 }
 
 .skill-bar {
-  background: #e0e0e0;
-  height: 12px;
-  border-radius: 8px;
+  background: #e5e7eb;
+  height: 10px;
+  border-radius: 10px;
   overflow: hidden;
-  margin-top: 5px;
 }
 
 .skill-fill {
   height: 100%;
-  background: var(--primary);
-  border-radius: 8px;
-  transition: width 1s;
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    #4facfe
+  );
+  border-radius: 10px;
+  transition: width 1.2s ease;
 }
+
+.skill-item {
+  margin-bottom: 18px;
+}
+
+.skill-item:last-child {
+  margin-bottom: 0;
+}
+
+
 
 
 /* services */
