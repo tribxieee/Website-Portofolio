@@ -89,3 +89,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+// counter
+const counters = document.querySelectorAll(".counter");
+
+const animateCounter = (counter) => {
+  const target = +counter.getAttribute("data-target");
+  let current = 0;
+  const increment = target / 80;
+
+  const update = () => {
+    current += increment;
+    if (current < target) {
+      counter.innerText = Math.ceil(current);
+      requestAnimationFrame(update);
+    } else {
+      counter.innerText = target;
+    }
+  };
+
+  update();
+};
+
+// optional: jalan pas section keliatan
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.6 }
+);
+
+counters.forEach(counter => observer.observe(counter));

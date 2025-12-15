@@ -186,41 +186,149 @@ section {
   }
 }
 
-
 /* about */
-.about p,
-.skills p {
-  font-size: 1.1rem;
-  text-align: justify;
+.about {
+  padding: 100px 0;
 }
 
+.about-left {
+  position: sticky;
+  top: 100px;
+}
 
-/* skills */
-.skill {
+.about-photo {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--primary);
   margin-bottom: 20px;
 }
 
-.skill-name {
+.about-name {
   font-weight: 600;
+  margin-bottom: 8px;
 }
 
-.skill-percent {
-  float: right;
+.about-tagline {
+  font-size: 0.95rem;
+  color: var(--text-muted);
 }
 
-.skill-bar {
-  background: #e0e0e0;
-  height: 12px;
-  border-radius: 8px;
-  overflow: hidden;
-  margin-top: 5px;
+.about-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 
-.skill-fill {
-  height: 100%;
+.about-desc {
+  font-size: 1.05rem;
+  margin-bottom: 30px;
+  line-height: 1.7;
+}
+
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.about-card {
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #eaeaea;
+  background: #fff;
+}
+
+.about-card h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.about-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.about-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+  border-left: 2px solid var(--primary);
+}
+
+.about-timeline li {
+  padding-left: 20px;
+  margin-bottom: 15px;
+  position: relative;
+  font-size: 0.95rem;
+}
+
+.about-timeline li span {
+  font-weight: 600;
+  color: var(--primary);
+  margin-right: 6px;
+}
+
+.about-timeline li::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
   background: var(--primary);
-  border-radius: 8px;
-  transition: width 1s;
+  border-radius: 50%;
+}
+
+.about-btn {
+  padding: 10px 24px;
+}
+
+@media (max-width: 768px) {
+  .about-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .about-left {
+    position: static;
+    margin-bottom: 40px;
+  }
+}
+
+
+
+/* skills */
+.skills-counter {
+  display: flex;
+  gap: 60px;
+  margin-top: 30px;
+}
+
+.counter-box h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 5px;
+}
+
+.counter-box p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .skills-counter {
+    gap: 30px;
+  }
+
+  .counter-box h2 {
+    font-size: 2rem;
+  }
 }
 
 
