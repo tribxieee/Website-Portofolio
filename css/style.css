@@ -83,6 +83,7 @@ section {
 
 .btn:hover {
   background: var(--primary-dark);
+  color: var(--white);
   transform: translateY(-3px);
 }
 
