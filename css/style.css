@@ -252,37 +252,6 @@ section {
   color: var(--text-muted);
 }
 
-.about-timeline {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 30px;
-  border-left: 2px solid var(--primary);
-}
-
-.about-timeline li {
-  padding-left: 20px;
-  margin-bottom: 15px;
-  position: relative;
-  font-size: 0.95rem;
-}
-
-.about-timeline li span {
-  font-weight: 600;
-  color: var(--primary);
-  margin-right: 6px;
-}
-
-.about-timeline li::before {
-  content: "";
-  position: absolute;
-  left: -7px;
-  top: 4px;
-  width: 10px;
-  height: 10px;
-  background: var(--primary);
-  border-radius: 50%;
-}
-
 .about-btn {
   padding: 10px 24px;
 }
@@ -304,7 +273,6 @@ section {
 .skills-counter {
   display: flex;
   gap: 60px;
-  margin-top: 30px;
 }
 
 .counter-box h2 {
