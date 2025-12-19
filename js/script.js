@@ -29,7 +29,6 @@ function animateSkillBars() {
 window.addEventListener("scroll", animateSkillBars);
 animateSkillBars();
 
-
 /* ================= FADE IN ================= */
 const sections = document.querySelectorAll("section");
 sections.forEach((section) => {
