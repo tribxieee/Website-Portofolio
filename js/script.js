@@ -14,14 +14,14 @@ const heroImage = document.querySelector(".hero-main-image");
 const skillFills = document.querySelectorAll(".skill-fill");
 let skillsAnimated = false;
 
-skillFills.forEach(skill => {
+skillFills.forEach((skill) => {
   skill.dataset.width = skill.style.width;
   skill.style.width = "0";
 });
 
 /* ================= FADE IN ================= */
 const sections = document.querySelectorAll("section");
-sections.forEach(section => {
+sections.forEach((section) => {
   section.style.opacity = 0;
   section.style.transform = "translateY(30px)";
   section.style.transition = "all 0.8s ease";
@@ -29,29 +29,32 @@ sections.forEach(section => {
 
 /* ================= COUNTER ================= */
 const counters = document.querySelectorAll(".counter");
-const counterObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    const el = entry.target;
-    const target = +el.dataset.target;
-    let current = 0;
-    const step = target / 80;
+const counterObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = +el.dataset.target;
+      let current = 0;
+      const step = target / 80;
 
-    const update = () => {
-      current += step;
-      if (current < target) {
-        el.textContent = Math.ceil(current);
-        requestAnimationFrame(update);
-      } else {
-        el.textContent = target;
-      }
-    };
-    update();
-    counterObserver.unobserve(el);
-  });
-}, { threshold: 0.6 });
+      const update = () => {
+        current += step;
+        if (current < target) {
+          el.textContent = Math.ceil(current);
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = target;
+        }
+      };
+      update();
+      counterObserver.unobserve(el);
+    });
+  },
+  { threshold: 0.6 }
+);
 
-counters.forEach(c => counterObserver.observe(c));
+counters.forEach((c) => counterObserver.observe(c));
 
 /* ================= SCROLL MASTER ================= */
 window.addEventListener("scroll", () => {
@@ -61,12 +64,12 @@ window.addEventListener("scroll", () => {
   navbar.classList.toggle("scrolled", scrollY > 60);
 
   // Hero parallax
-  if (heroImage) {
+  if (heroImage && window.matchMedia("(min-width: 769px)").matches) {
     heroImage.style.transform = `translateY(${scrollY * 0.08}px)`;
   }
 
   // Fade in section
-  sections.forEach(section => {
+  sections.forEach((section) => {
     if (isInViewport(section, 120)) {
       section.style.opacity = 1;
       section.style.transform = "translateY(0)";
@@ -75,7 +78,7 @@ window.addEventListener("scroll", () => {
 
   // Skill bar
   if (!skillsAnimated && isInViewport(document.querySelector(".skills"), 120)) {
-    skillFills.forEach(bar => {
+    skillFills.forEach((bar) => {
       bar.style.transition = "width 1.5s ease";
       bar.style.width = bar.dataset.width;
     });
@@ -84,29 +87,31 @@ window.addEventListener("scroll", () => {
 });
 
 /* ================= SERVICE CARD TILT ================= */
-document.querySelectorAll(".service-item").forEach(card => {
-  card.addEventListener("mousemove", e => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+if (window.matchMedia("(min-width: 769px)").matches) {
+  document.querySelectorAll(".service-item").forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-    const rotateX = ((y / rect.height) - 0.5) * 10;
-    const rotateY = ((x / rect.width) - 0.5) * -10;
+      const rotateX = (y / rect.height - 0.5) * 10;
+      const rotateY = (x / rect.width - 0.5) * -10;
 
-    card.style.transform = `
-      translateY(-12px)
-      rotateX(${rotateX}deg)
-      rotateY(${rotateY}deg)
-    `;
+      card.style.transform = `
+        translateY(-12px)
+        rotateX(${rotateX}deg)
+        rotateY(${rotateY}deg)
+      `;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "translateY(0) rotateX(0) rotateY(0)";
+    });
   });
-
-  card.addEventListener("mouseleave", () => {
-    card.style.transform = "translateY(0)";
-  });
-});
+}
 
 /* ================= CONTACT FORM ================= */
-document.querySelector(".contact-form")?.addEventListener("submit", e => {
+document.querySelector(".contact-form")?.addEventListener("submit", (e) => {
   e.preventDefault();
   alert("Message sent!");
   e.target.reset();
