@@ -11,13 +11,24 @@ const navbar = document.querySelector(".navbar");
 const heroImage = document.querySelector(".hero-main-image");
 
 /* ================= SKILLS ================= */
-const skillFills = document.querySelectorAll(".skill-fill");
-let skillsAnimated = false;
+const skillBars = document.querySelectorAll(".skill-fill");
 
-skillFills.forEach((skill) => {
-  skill.dataset.width = skill.style.width;
-  skill.style.width = "0";
-});
+function animateSkillBars() {
+  const skillsSection = document.querySelector(".skills");
+  const rect = skillsSection.getBoundingClientRect();
+
+  if (rect.top < window.innerHeight - 100) {
+    skillBars.forEach((bar) => {
+      const target = bar.dataset.width;
+      bar.style.width = target + "%";
+    });
+    window.removeEventListener("scroll", animateSkillBars);
+  }
+}
+
+window.addEventListener("scroll", animateSkillBars);
+animateSkillBars();
+
 
 /* ================= FADE IN ================= */
 const sections = document.querySelectorAll("section");
