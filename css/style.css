@@ -15,7 +15,7 @@
 }
 
 body {
-  font-family: "Gill Sans", Calibri, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: var(--bg-main);
   color: var(--text-dark);
   line-height: 1.6;
@@ -100,6 +100,7 @@ section {
 
 .home .sub-title {
   font-size: 1.2rem;
+  font-weight: 400;
   margin: 15px 0 25px;
 }
 
