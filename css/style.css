@@ -15,7 +15,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: var(--bg-main);
   color: var(--text-dark);
   line-height: 1.6;
@@ -71,20 +71,81 @@ section {
 
 /* button */
 .btn {
-  display: inline-block;
-  padding: 12px 28px;
+  position: relative;
+  overflow: hidden;
   border-radius: 50px;
-  background: var(--primary);
-  color: var(--white);
+  padding: 12px 30px;
   font-weight: 600;
-  text-decoration: none;
-  transition: 0.3s;
+  transition: all 0.35s ease;
+  border: 2px solid transparent;
 }
 
-.btn:hover {
-  background: var(--primary-dark);
+.btn-primary-fill {
+  background: var(--primary);
   color: var(--white);
-  transform: translateY(-3px);
+  border-color: var(--primary);
+}
+
+.btn-primary-fill:hover {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 119, 182, 0.25);
+}
+
+.btn-primary-outline {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.btn-primary-outline:hover {
+  background: var(--white);
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 119, 182, 0.25);
+}
+
+.btn-primary-outline2 {
+  background: var(--white);
+  color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-primary-outline2:hover {
+  background: var(--primary);
+  color: var(--white);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 119, 182, 0.25);
+}
+
+.btn-secondary-outline {
+  background: var(--white);
+  color: #4e5154;
+  border: 2px solid #adb5bd;
+}
+
+.btn-secondary-outline:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 119, 182, 0.2);
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.btn:hover::after {
+  transform: scaleX(1);
 }
 
 /* home */
