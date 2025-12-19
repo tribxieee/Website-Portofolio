@@ -675,6 +675,16 @@ section {
     grid-template-columns: 1fr;
   }
 
+  .approach-desc {
+    margin-bottom: 40px;
+  }
+
+  .approach .btn {
+    margin-top: 0;
+    width: 100%;
+    max-width: 260px;
+  }
+
   /* ---------- SKILLS ---------- */
   .skills-counter {
     justify-content: center;
