@@ -1,141 +1,113 @@
-// Helper: cek apakah elemen terlihat di viewport
-function isInViewport(el, offset = 0) {
+/* ================= UTIL ================= */
+const isInViewport = (el, offset = 0) => {
   const rect = el.getBoundingClientRect();
   return rect.top < window.innerHeight - offset;
-}
+};
 
-/* ================= Hero Floating Cards ================= */
-const floatingCards = document.querySelectorAll(".floating-card");
-floatingCards.forEach((card, i) => {
-  let direction = 1;
-  setInterval(() => {
-    let y = parseFloat(card.style.transform?.match(/translateY\((-?\d+)px\)/)?.[1]) || 0;
-    if (y >= 15) direction = -1;
-    if (y <= -15) direction = 1;
-    card.style.transform = `translateY(${y + direction}px)`;
-  }, 80 + i * 20);
-});
+/* ================= NAVBAR SCROLL ================= */
+const navbar = document.querySelector(".navbar");
 
-/* ================= Skill Bar Animation ================= */
+/* ================= HERO PARALLAX ================= */
+const heroImage = document.querySelector(".hero-main-image");
+
+/* ================= SKILLS ================= */
 const skillFills = document.querySelectorAll(".skill-fill");
-skillFills.forEach((skill) => {
-  skill.setAttribute("data-width", skill.style.width); // simpan target
+let skillsAnimated = false;
+
+skillFills.forEach(skill => {
+  skill.dataset.width = skill.style.width;
   skill.style.width = "0";
-  skill.style.transition = "width 1.5s ease-in-out";
 });
 
-function animateSkills() {
-  const skillsSection = document.querySelector(".skills");
-  if (isInViewport(skillsSection, 100)) {
-    skillFills.forEach((bar) => {
-      const targetWidth = parseInt(bar.getAttribute("data-width"));
-      let currentWidth = 0;
-      const interval = setInterval(() => {
-        currentWidth++;
-        bar.style.width = currentWidth + "%";
-        if (currentWidth >= targetWidth) clearInterval(interval);
-      }, 12);
-    });
-    window.removeEventListener("scroll", animateSkills);
-  }
-}
-
-/* ================= Fade-In per Element ================= */
-document.querySelectorAll("section").forEach((section) => {
-  const children = Array.from(section.children);
-  children.forEach((child, index) => {
-    child.style.opacity = 0;
-    child.style.transform = "translateY(20px)";
-    child.style.transition = `all 0.6s ease-out ${index * 0.15}s`;
-  });
+/* ================= FADE IN ================= */
+const sections = document.querySelectorAll("section");
+sections.forEach(section => {
+  section.style.opacity = 0;
+  section.style.transform = "translateY(30px)";
+  section.style.transition = "all 0.8s ease";
 });
 
-function fadeInSection(section) {
-  if (!section.classList.contains("fade-in-done") && isInViewport(section, 100)) {
-    section.querySelectorAll("*").forEach((el) => {
-      el.style.opacity = 1;
-      el.style.transform = "translateY(0)";
-    });
-    section.classList.add("fade-in-done");
-  }
-}
+/* ================= COUNTER ================= */
+const counters = document.querySelectorAll(".counter");
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = +el.dataset.target;
+    let current = 0;
+    const step = target / 80;
 
-/* ================= Service Card Hover (JS Smooth) ================= */
-document.querySelectorAll(".service-item").forEach((card) => {
-  card.addEventListener("mouseenter", () => {
-    card.style.transition = "transform 0.2s ease, box-shadow 0.2s ease";
-    card.style.transform = "translateY(-15px)";
+    const update = () => {
+      current += step;
+      if (current < target) {
+        el.textContent = Math.ceil(current);
+        requestAnimationFrame(update);
+      } else {
+        el.textContent = target;
+      }
+    };
+    update();
+    counterObserver.unobserve(el);
   });
+}, { threshold: 0.6 });
+
+counters.forEach(c => counterObserver.observe(c));
+
+/* ================= SCROLL MASTER ================= */
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
+
+  // Navbar
+  navbar.classList.toggle("scrolled", scrollY > 60);
+
+  // Hero parallax
+  if (heroImage) {
+    heroImage.style.transform = `translateY(${scrollY * 0.08}px)`;
+  }
+
+  // Fade in section
+  sections.forEach(section => {
+    if (isInViewport(section, 120)) {
+      section.style.opacity = 1;
+      section.style.transform = "translateY(0)";
+    }
+  });
+
+  // Skill bar
+  if (!skillsAnimated && isInViewport(document.querySelector(".skills"), 120)) {
+    skillFills.forEach(bar => {
+      bar.style.transition = "width 1.5s ease";
+      bar.style.width = bar.dataset.width;
+    });
+    skillsAnimated = true;
+  }
+});
+
+/* ================= SERVICE CARD TILT ================= */
+document.querySelectorAll(".service-item").forEach(card => {
+  card.addEventListener("mousemove", e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const rotateX = ((y / rect.height) - 0.5) * 10;
+    const rotateY = ((x / rect.width) - 0.5) * -10;
+
+    card.style.transform = `
+      translateY(-12px)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+    `;
+  });
+
   card.addEventListener("mouseleave", () => {
-    card.style.transition = "transform 0.3s ease, box-shadow 0.3s ease";
     card.style.transform = "translateY(0)";
   });
 });
 
-/* ================= Button Hover Animation ================= */
-document.querySelectorAll(".btn, .contact-form button").forEach((btn) => {
-  btn.style.transition = "transform 0.2s ease";
-  btn.addEventListener("mouseenter", () => (btn.style.transform = "scale(1.05)"));
-  btn.addEventListener("mouseleave", () => (btn.style.transform = "scale(1)"));
+/* ================= CONTACT FORM ================= */
+document.querySelector(".contact-form")?.addEventListener("submit", e => {
+  e.preventDefault();
+  alert("Message sent!");
+  e.target.reset();
 });
-
-/* ================= Counter Animation ================= */
-const counters = document.querySelectorAll(".counter");
-const animateCounter = (counter) => {
-  const target = +counter.getAttribute("data-target");
-  let current = 0;
-  const increment = target / 80;
-  const update = () => {
-    current += increment;
-    if (current < target) {
-      counter.innerText = Math.ceil(current);
-      requestAnimationFrame(update);
-    } else {
-      counter.innerText = target;
-    }
-  };
-  update();
-};
-
-const counterObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target);
-        counterObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.6 }
-);
-counters.forEach((counter) => counterObserver.observe(counter));
-
-/* ================= Contact Form ================= */
-document.addEventListener("DOMContentLoaded", () => {
-  const contactForm = document.querySelector(".contact-form");
-  contactForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const name = contactForm.querySelector('input[type="text"]').value.trim();
-    const email = contactForm.querySelector('input[type="email"]').value.trim();
-    const phone = contactForm.querySelector('input[type="tel"]').value.trim();
-    const message = contactForm.querySelector("textarea").value.trim();
-
-    if (!name || !email || !phone || !message) {
-      alert("Please fill in all fields!");
-      return;
-    }
-
-    alert(`Message sent!\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`);
-    contactForm.reset();
-  });
-});
-
-/* ================= Scroll Event ================= */
-window.addEventListener("scroll", () => {
-  document.querySelectorAll("section").forEach((section) => fadeInSection(section));
-  animateSkills();
-});
-
-/* Trigger animasi untuk section yang langsung terlihat */
-document.querySelectorAll("section").forEach((section) => fadeInSection(section));
-animateSkills();
