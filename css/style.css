@@ -185,17 +185,17 @@ section {
   }
 }
 
-/* about */
-.about {
+/* approach */
+.approach {
   padding: 100px 0;
 }
 
-.about-left {
+.approach-left {
   position: sticky;
   top: 100px;
 }
 
-.about-photo {
+.approach-photo {
   width: 180px;
   height: 180px;
   object-fit: cover;
@@ -204,63 +204,63 @@ section {
   margin-bottom: 20px;
 }
 
-.about-name {
+.approach-name {
   font-weight: 600;
   margin-bottom: 8px;
 }
 
-.about-tagline {
+.approach-tagline {
   font-size: 0.95rem;
   color: var(--text-muted);
 }
 
-.about-title {
+.approach-title {
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 15px;
 }
 
-.about-desc {
+.approach-desc {
   font-size: 1.05rem;
   margin-bottom: 30px;
   line-height: 1.7;
 }
 
-.about-cards {
+.approach-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin-bottom: 30px;
 }
 
-.about-card {
+.approach-card {
   padding: 20px;
   border-radius: 12px;
   border: 1px solid #eaeaea;
   background: #fff;
 }
 
-.about-card h5 {
+.approach-card h5 {
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 8px;
 }
 
-.about-card p {
+.approach-card p {
   font-size: 0.9rem;
   color: var(--text-muted);
 }
 
-.about-btn {
+.approach-btn {
   padding: 10px 24px;
 }
 
 @media (max-width: 768px) {
-  .about-cards {
+  .approach-cards {
     grid-template-columns: 1fr;
   }
 
-  .about-left {
+  .approach-left {
     position: static;
     margin-bottom: 40px;
   }
