@@ -640,17 +640,16 @@ section {
     font-size: 1rem;
   }
 
-  .home .col-md-6 {
+  .home .col-md-6:first-child {
     display: flex;
     justify-content: center;
-    gap: 12px;
     flex-wrap: wrap;
   }
 
-  .home .col-md-6 > .btn {
+  .home .col-md-6:first-child .btn {
     width: auto;
     min-width: 140px;
-    margin: 0;
+    margin: 6px;
   }
 
   .hero-image {
