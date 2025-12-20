@@ -134,3 +134,58 @@ const navMenu = document.querySelector(".nav");
 toggleBtn?.addEventListener("click", () => {
   navMenu.classList.toggle("active");
 });
+
+/* ================= PROJECT FILTERING ================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const filters = document.querySelectorAll(".project-filters li");
+  const items = Array.from(document.querySelectorAll(".project-item"));
+
+  // init
+  items.forEach((item) => item.classList.add("is-visible"));
+
+  filters.forEach((filter) => {
+    filter.addEventListener("click", () => {
+      filters.forEach((f) => f.classList.remove("filter-active"));
+      filter.classList.add("filter-active");
+
+      const value = filter.dataset.filter;
+
+      // FIRST
+      const firstRects = new Map();
+      items.forEach((item) => {
+        firstRects.set(item, item.getBoundingClientRect());
+      });
+
+      // UPDATE VISIBILITY
+      items.forEach((item) => {
+        const match =
+          value === "*" || item.classList.contains(value.replace(".", ""));
+
+        item.classList.toggle("is-hidden", !match);
+        item.classList.toggle("is-visible", match);
+      });
+
+      // FORCE REFLOW
+      document.body.offsetHeight;
+
+      // FLIP
+      items.forEach((item) => {
+        const first = firstRects.get(item);
+        const last = item.getBoundingClientRect();
+
+        const dx = first.left - last.left;
+        const dy = first.top - last.top;
+
+        if (dx || dy) {
+          item.style.transform = `translate(${dx}px, ${dy}px)`;
+          item.style.transition = "none";
+
+          requestAnimationFrame(() => {
+            item.style.transition = "";
+            item.style.transform = "";
+          });
+        }
+      });
+    });
+  });
+});
