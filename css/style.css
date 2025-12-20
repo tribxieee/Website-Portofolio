@@ -640,12 +640,17 @@ section {
     font-size: 1rem;
   }
 
-  .home .col-md-6 > .btn {
-    display: inline-flex;
+  .home .col-md-6 {
+    display: flex;
     justify-content: center;
-    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .home .col-md-6 > .btn {
     width: auto;
-    margin: 0 6px;
+    min-width: 140px;
+    margin: 0;
   }
 
   .hero-image {
@@ -688,12 +693,17 @@ section {
     margin-bottom: 40px;
   }
 
-  .approach .col-md-12 > .btn {
-    display: inline-flex;
+  .approach .col-md-12 {
+    display: flex;
     justify-content: center;
-    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .approach .col-md-12 > .btn {
     width: auto;
-    margin: 0 6px;
+    min-width: 140px;
+    margin: 0;
   }
 
   /* ---------- SKILLS ---------- */
