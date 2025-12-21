@@ -128,10 +128,10 @@ document.querySelector(".contact-form")?.addEventListener("submit", (e) => {
 });
 
 /* ================= MOBILE NAV TOGGLE ================= */
-const toggleBtn = document.querySelector(".nav-toggle");
+const navToggle = document.querySelector(".nav-toggle");
 const navMenu = document.querySelector(".nav");
 
-toggleBtn?.addEventListener("click", () => {
+navToggle.addEventListener("click", () => {
   navMenu.classList.toggle("active");
 });
 
