@@ -744,7 +744,23 @@ hr {
   position: relative;
 }
 
+.project .btn-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 35 px;
+}
+
+.project .btn-group .btn {
+  width: auto;
+  max-width: 140px;
+  padding: 12px 30px;
+}
+
 /* certificate */
+.certificate {
+  padding: 50px 0 200px;
+}
+
 .certificate-title {
   display: flex;
   align-items: center;
@@ -752,6 +768,7 @@ hr {
   font-size: 32px;
   font-weight: 600;
 }
+
 .certificate-title::after {
   content: "";
   margin-top: 10px;
@@ -759,6 +776,7 @@ hr {
   height: 2px;
   background-color: var(--text-dark);
 }
+
 .certificate-card {
   position: relative;
   overflow: hidden;
