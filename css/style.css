@@ -6,6 +6,8 @@
   --text-dark: #03045e;
   --accent: #90dbf4;
   --white: #ffffff;
+  --year-bg: #a7e084;
+  --text-muted: #888;
 }
 
 * {
@@ -261,103 +263,6 @@ section {
   }
 }
 
-/* approach */
-.approach {
-  padding: 100px 0;
-}
-
-.approach-left {
-  position: sticky;
-  top: 100px;
-}
-
-.approach-photo {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid var(--primary);
-  margin-bottom: 20px;
-}
-
-.approach-name {
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.approach-tagline {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-}
-
-.approach-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 32px;
-  font-weight: 600;
-}
-
-.approach-title::after {
-  content: "";
-  margin-top: 10px;
-  width: 100px;
-  height: 2px;
-  background-color: var(--text-dark);
-}
-
-.approach-desc {
-  font-size: 1.05rem;
-  margin-bottom: 30px;
-  line-height: 1.7;
-}
-
-.approach-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-bottom: 30px;
-}
-
-.approach-card {
-  padding: 20px;
-  border-radius: 12px;
-  border: 1px solid #eaeaea;
-  background: #fff;
-}
-
-.approach-card h5 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.approach-card p {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-.approach-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 180px;
-  padding: 12px 30px;
-  margin-top: 24px;
-  border-radius: 50px;
-  font-weight: 600;
-}
-
-.approach-card {
-  transition: all 0.35s ease;
-  cursor: default;
-}
-
-.approach-card:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 20px 45px rgba(0, 119, 182, 0.25);
-}
-
 /* skills */
 .skills-title {
   display: flex;
@@ -376,7 +281,6 @@ section {
   background-color: var(--text-dark);
 }
 
-/* Counter */
 .skills-counter {
   display: flex;
   gap: 60px;
@@ -396,7 +300,6 @@ section {
   margin: 0;
 }
 
-/* Skill Card */
 .skill-card {
   background: #fff;
   padding: 22px 24px;
@@ -448,6 +351,94 @@ section {
   background: linear-gradient(90deg, var(--primary), #4facfe);
   border-radius: 10px;
   transition: width 1.4s ease-in-out;
+}
+
+/* experience */
+.experience-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.experience-title::after {
+  content: "";
+  margin-top: 10px;
+  width: 100px;
+  height: 2px;
+  background-color: var(--text-dark);
+}
+
+.experience-card {
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 20px;
+  height: 100%;
+}
+
+.experience-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.icon-box {
+  width: 45px;
+  height: 45px;
+  background-color: var(--bg-main);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.2rem;
+}
+
+.experience-header h2 {
+  color: var(--primary);
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+hr {
+  border: 0;
+  border-top: 3px solid #a7a7a7;
+  margin-bottom: 25px;
+}
+
+.experience-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.experience-item h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.experience-item p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.badge-year {
+  background-color: var(--year-bg);
+  color: #000;
+  padding: 6px 15px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  white-space: nowrap;
 }
 
 /* services */
@@ -967,6 +958,12 @@ section {
   .services .service-item:hover {
     transform: none !important;
     box-shadow: 0 5px 25px -5px rgba(0, 0, 0, 0.05);
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .experience-item {
+    flex-direction: column;
+    gap: 10px;
   }
 
   /* ---------- PROJECT ---------- */

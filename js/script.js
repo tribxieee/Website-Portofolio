@@ -11,7 +11,8 @@ const navbar = document.querySelector(".navbar");
 const heroImage = document.querySelector(".hero-main-image");
 
 /* ================= SKILLS ================= */
-const skillBars = document.querySelectorAll(".skill-fill");
+const skillFills = document.querySelectorAll(".skill-fill");
+let skillsAnimated = false;
 
 function animateSkillBars() {
   const skillsSection = document.querySelector(".skills");
@@ -36,6 +37,18 @@ sections.forEach((section) => {
   section.style.transform = "translateY(30px)";
   section.style.transition = "all 0.8s ease";
 });
+
+function revealSections() {
+  sections.forEach((section) => {
+    if (isInViewport(section, 120)) {
+      section.style.opacity = 1;
+      section.style.transform = "translateY(0)";
+    }
+  });
+}
+
+window.addEventListener("scroll", revealSections);
+window.addEventListener("load", revealSections);
 
 /* ================= COUNTER ================= */
 const counters = document.querySelectorAll(".counter");
