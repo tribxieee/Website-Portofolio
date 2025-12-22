@@ -273,7 +273,7 @@ section {
   z-index: 1;
   background-color: var(--marquee-bg);
   margin-top: 0;
-  padding: 18px 0;
+  padding: 15px 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -284,41 +284,38 @@ section {
 .marquee-item {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
 }
 
 .marquee-item span {
   font-size: 30px;
-  font-weight: 500;
+  font-weight: 400;
   color: #1a1a1a;
   white-space: nowrap;
   transition: 0.3s;
 }
 
-.marquee-item span:first-of-type {
-  -webkit-mask-image: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 100%
-  );
+.static-marquee-bar::before,
+.static-marquee-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
 }
 
-.marquee-item span:last-of-type {
-  -webkit-mask-image: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 100%
-  );
-  mask-image: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 100%
-  );
+.static-marquee-bar::before {
+  left: 0;
+  background: linear-gradient(to right, var(--marquee-bg), transparent);
+}
+
+.static-marquee-bar::after {
+  right: 0;
+  background: linear-gradient(to left, var(--marquee-bg), transparent);
 }
 
 .marquee-item i {
@@ -948,7 +945,10 @@ hr {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 15px;
     line-height: 1.6;
-    padding-top: 70px;
+    padding-top: 30px;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
   }
 
   /* ---------- NAVBAR ---------- */
@@ -1002,7 +1002,7 @@ hr {
   }
   /* ---------- HOME / HERO ---------- */
   .home {
-    padding: 80px 0 60px;
+    padding: 80px 0 0;
     text-align: center;
   }
 
@@ -1027,12 +1027,67 @@ hr {
   }
 
   .hero-image {
-    margin-top: 50px;
+    margin-top: 30px;
+    margin-bottom: -20px;
     transform: translateY(-20px);
   }
 
   .hero-main-image {
-    max-width: 85%;
+    max-width: 100%;
+  }
+
+  .image-container::before {
+    width: 80%;
+    height: 80%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+  }
+
+  .static-marquee-bar {
+    padding: 12px 0;
+    overflow-x: hidden;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+
+  .marquee-item {
+    display: flex;
+    width: max-content;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+
+  .marquee-item span,
+  .marquee-item i {
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 20px;
+  }
+
+  /* fade ujung pake pseudo */
+  .static-marquee-bar::before,
+  .static-marquee-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 40px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .static-marquee-bar::before {
+    left: 0;
+    background: linear-gradient(to right, var(--marquee-bg), transparent);
+  }
+
+  .static-marquee-bar::after {
+    right: 0;
+    background: linear-gradient(to left, var(--marquee-bg), transparent);
   }
 
   .image-overlay,
