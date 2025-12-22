@@ -8,6 +8,7 @@
   --white: #ffffff;
   --year-bg: #a7e084;
   --text-muted: #888;
+  --marquee-bg: #a7e084;
 }
 
 * {
@@ -176,7 +177,7 @@ section {
 /* home */
 .home {
   background: var(--bg-main);
-  padding: 120px 0;
+  padding: 60px 0 0;
 }
 
 .home .title {
@@ -201,20 +202,24 @@ section {
   max-width: 420px;
 }
 
-.hero-main-image {
-  width: 100%;
-  border-radius: 20px;
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+.image-container::before {
+  content: "";
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 30px;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-20deg);
+  z-index: 1;
+  opacity: 0.9;
 }
 
-.image-overlay {
-  position: absolute;
-  inset: 20px -20px -20px 20px;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  border-radius: 20px;
-  z-index: 1;
+.hero-main-image {
+  position: relative;
+  z-index: 2;
+  background: transparent;
 }
 
 .floating-elements {
@@ -261,6 +266,64 @@ section {
   50% {
     transform: translateY(-15px);
   }
+}
+
+.static-marquee-bar {
+  position: relative;
+  z-index: 1;
+  background-color: var(--marquee-bg);
+  margin-top: 0;
+  padding: 18px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.marquee-item span {
+  font-size: 30px;
+  font-weight: 500;
+  color: #1a1a1a;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.marquee-item span:first-of-type {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+.marquee-item span:last-of-type {
+  -webkit-mask-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  mask-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+.marquee-item i {
+  font-size: 30px;
+  color: #1a1a1a;
 }
 
 /* skills */

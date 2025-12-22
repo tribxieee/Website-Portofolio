@@ -7,9 +7,6 @@ const isInViewport = (el, offset = 0) => {
 /* ================= NAVBAR SCROLL ================= */
 const navbar = document.querySelector(".navbar");
 
-/* ================= HERO PARALLAX ================= */
-const heroImage = document.querySelector(".hero-main-image");
-
 /* ================= SKILLS ================= */
 const skillFills = document.querySelectorAll(".skill-fill");
 let skillsAnimated = false;
